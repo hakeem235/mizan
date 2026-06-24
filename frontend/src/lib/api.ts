@@ -56,3 +56,50 @@ export interface DashboardData {
 export function getDashboard() {
   return apiGet<DashboardData>("/api/dashboard/");
 }
+
+export async function apiPost<T>(path: string, body: unknown): Promise<T> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    throw new Error(`API ${path} failed: ${res.status}`);
+  }
+  return res.json() as Promise<T>;
+}
+
+export interface DocFlag {
+  field: string;
+  message: string;
+  severity: "danger" | "warning" | "info";
+}
+
+export interface DocumentData {
+  id: number;
+  filename: string;
+  doc_type: string;
+  status: string;
+  extracted: Record<string, string | null>;
+  flags: DocFlag[];
+  confidence: string;
+  journal_entry: number | null;
+}
+
+export function createDocument(input: {
+  filename: string;
+  doc_type: string;
+  raw_text: string;
+}) {
+  return apiPost<DocumentData>("/api/documents/", input);
+}
+
+export function confirmDocument(
+  id: number,
+  body: { extracted?: Record<string, string>; expense_account?: number } = {},
+) {
+  return apiPost<{ document: DocumentData; journal_entry: number }>(
+    `/api/documents/${id}/confirm/`,
+    body,
+  );
+}
