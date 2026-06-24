@@ -6,7 +6,28 @@
   "landing": {
     "headline": "Your virtual accountant",
     "subhead": "AI-powered bookkeeping, document processing, financial reporting, and Saudi VAT — in Arabic and English.",
-    "cta": "Get started",
+    "cta": "Open dashboard",
     "healthLabel": "API status"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview",
+    "kpi": {
+      "revenue": "Revenue",
+      "expenses": "Expenses",
+      "net_cash_flow": "Net Cash Flow",
+      "outstanding_invoices": "Outstanding Invoices",
+      "vat_payable": "VAT Payable"
+    },
+    "revVsExp": "Revenue vs Expenses",
+    "last8": "Last 8 months",
+    "revenue": "Revenue",
+    "expenses": "Expenses",
+    "health": "Financial Health",
+    "aiRecs": "AI Recommendations",
+    "recentTxn": "Recent Transactions",
+    "duplicate": "Duplicate",
+    "loading": "Loading dashboard…",
+    "error": "Could not load dashboard. Is the API running?"
   }
 }

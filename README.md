@@ -31,6 +31,18 @@ docker compose up --build
 # API at http://localhost:8000  ·  health: http://localhost:8000/api/health/
 ```
 
+Seed a demo organization (chart of accounts, balanced journal entries incl. a
+foreign-currency entry, and bank transactions incl. a flagged duplicate):
+
+```bash
+docker compose exec api python manage.py seed_demo
+# then GET /api/dashboard/ returns real aggregates for the demo org
+```
+
+Key API endpoints: `/api/dashboard/`, `/api/accounts/`, `/api/journal-entries/`,
+`/api/transactions/`. The active organization resolves from an `X-Org-Id` header,
+falling back to the first org (replaced by Clerk-bound org scoping when auth lands).
+
 ### Frontend
 
 ```bash

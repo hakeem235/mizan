@@ -1,0 +1,58 @@
+// Thin client for the Mizan Django API. The base URL is build/run-time config.
+export const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
+
+export async function apiGet<T>(path: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    ...init,
+    headers: { Accept: "application/json", ...(init?.headers ?? {}) },
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error(`API ${path} failed: ${res.status}`);
+  }
+  return res.json() as Promise<T>;
+}
+
+export interface DashboardKpis {
+  revenue: string;
+  expenses: string;
+  net_cash_flow: string;
+  outstanding_invoices: string;
+  vat_payable: string;
+}
+
+export interface ChartPoint {
+  month: string;
+  revenue: string;
+  expenses: string;
+}
+
+export interface Recommendation {
+  title: string;
+  body: string;
+  severity: "danger" | "warning" | "info";
+}
+
+export interface RecentTransaction {
+  id: number;
+  description: string;
+  category: string;
+  amount: string;
+  is_duplicate: boolean;
+}
+
+export interface DashboardData {
+  organization: string;
+  period: string;
+  base_currency: string;
+  kpis: DashboardKpis;
+  health: { score: number; label: string };
+  recommendations: Recommendation[];
+  chart: ChartPoint[];
+  recent_transactions: RecentTransaction[];
+}
+
+export function getDashboard() {
+  return apiGet<DashboardData>("/api/dashboard/");
+}
