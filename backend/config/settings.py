@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "ledger",
     "documents",
     "assistant",
+    "reporting",
 ]
 
 MIDDLEWARE = [

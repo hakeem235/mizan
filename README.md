@@ -42,7 +42,8 @@ docker compose exec api python manage.py seed_demo
 Key API endpoints: `/api/dashboard/`, `/api/accounts/`, `/api/journal-entries/`,
 `/api/transactions/`, `/api/documents/` (+ `/api/documents/{id}/confirm/` to post
 an extracted document to the ledger), `/api/assistant/ask/` (grounded AI Q&A over
-the ledger). The active organization resolves from an `X-Org-Id` header,
+the ledger), `/api/reports/` + `/api/reports/{key}/` (financial statements + Saudi
+VAT; add `?export=xlsx` or `?export=pdf` to download). The active organization resolves from an `X-Org-Id` header,
 falling back to the first org (replaced by Clerk-bound org scoping when auth lands).
 
 ### Frontend

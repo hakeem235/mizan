@@ -69,5 +69,23 @@
       "cashflow": "Forecast my cash flow for next quarter",
       "revenue": "Why did my revenue change?"
     }
+  },
+  "reports": {
+    "title": "Financial Reports",
+    "subtitle": "Statements · Export to PDF / Excel",
+    "loading": "Loading report…",
+    "error": "Could not load report. Is the API running?",
+    "exportPdf": "PDF",
+    "exportExcel": "Excel",
+    "tabs": {
+      "trial_balance": "Trial Balance",
+      "profit_and_loss": "Profit & Loss",
+      "balance_sheet": "Balance Sheet",
+      "cash_flow": "Cash Flow",
+      "general_ledger": "General Ledger",
+      "ar_aging": "AR Aging",
+      "ap_aging": "AP Aging",
+      "vat_report": "VAT (ZATCA)"
+    }
   }
 }

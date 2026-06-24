@@ -120,3 +120,31 @@ export interface AssistantAnswer {
 export function askAssistant(question: string) {
   return apiPost<AssistantAnswer>("/api/assistant/ask/", { question });
 }
+
+export interface ReportColumn {
+  label: string;
+  numeric: boolean;
+}
+
+export interface ReportRow {
+  cells: (string | null)[];
+  style: "normal" | "section" | "subtotal" | "total";
+}
+
+export interface Report {
+  key: string;
+  title: string;
+  subtitle: string;
+  columns: ReportColumn[];
+  rows: ReportRow[];
+  meta: Record<string, unknown>;
+}
+
+export function getReport(key: string) {
+  return apiGet<Report>(`/api/reports/${key}/`);
+}
+
+// Direct download URL for a report export (xlsx | pdf).
+export function reportExportUrl(key: string, fmt: "xlsx" | "pdf") {
+  return `${API_BASE_URL}/api/reports/${key}/?export=${fmt}`;
+}
