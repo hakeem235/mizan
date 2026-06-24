@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 export default async function Home({
   params,
@@ -30,9 +31,12 @@ export default async function Home({
         <p className="mt-3 text-muted-soft">{t("landing.subhead")}</p>
       </div>
 
-      <button className="rounded-md bg-gradient-to-br from-brand to-brand-dark px-6 py-3 text-sm font-semibold text-white shadow-sm">
+      <Link
+        href="/dashboard"
+        className="rounded-md bg-gradient-to-br from-brand to-brand-dark px-6 py-3 text-sm font-semibold text-white shadow-sm"
+      >
         {t("landing.cta")}
-      </button>
+      </Link>
     </main>
   );
 }
