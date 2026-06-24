@@ -1,0 +1,38 @@
+# Local development: Django backend + Postgres.
+# Usage: cp backend/.env.example backend/.env && docker compose up --build
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: mizan
+      POSTGRES_USER: mizan
+      POSTGRES_PASSWORD: mizan
+    ports:
+      - "5432:5432"
+    volumes:
+      - mizan_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mizan"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DJANGO_DEBUG: "true"
+      DJANGO_SECRET_KEY: "dev-only-insecure-key-change-me"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1,0.0.0.0"
+      DB_NAME: mizan
+      DB_USER: mizan
+      DB_PASSWORD: mizan
+      DB_HOST: db
+      DB_PORT: "5432"
+    ports:
+      - "8000:8000"
+
+volumes:
+  mizan_pgdata:

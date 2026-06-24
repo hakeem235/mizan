@@ -1,0 +1,42 @@
+# Render Blueprint for the Mizan Django backend.
+# Deploy: Render Dashboard → New → Blueprint → connect this repo.
+# Secrets marked `sync: false` are filled in the Render dashboard after the
+# first apply (intentionally NOT stored in git).
+databases:
+  - name: mizan-db
+    databaseName: mizan
+    user: mizan
+    plan: free # NOTE: free Postgres expires after 30 days; upgrade before launch.
+
+services:
+  - type: web
+    name: mizan-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    # Free-tier plans don't support preDeployCommand, so migrations run at start
+    # instead (the runtime env can reach the internal DB; the build env cannot).
+    startCommand: "python manage.py migrate --noinput && gunicorn config.wsgi --bind 0.0.0.0:$PORT --workers 3"
+    healthCheckPath: /api/health/
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: DJANGO_DEBUG
+        value: "false"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mizan-db
+          property: connectionString
+      # ALLOWED_HOSTS is satisfied automatically via RENDER_EXTERNAL_HOSTNAME.
+      # --- fill these in the Render dashboard (sync: false) ---
+      - key: CORS_ALLOWED_ORIGINS # the Vercel frontend URL
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS # same Vercel URL (https)
+        sync: false
+      - key: ANTHROPIC_API_KEY # Issue 7.3
+        sync: false
+      - key: OCR_PROVIDER # Issue 7.2 (set once provider chosen)
+        sync: false
