@@ -29,5 +29,29 @@
     "duplicate": "Duplicate",
     "loading": "Loading dashboard…",
     "error": "Could not load dashboard. Is the API running?"
+  },
+  "documents": {
+    "title": "Document Processing",
+    "subtitle": "OCR extraction & validation",
+    "drop": "Choose a document to scan",
+    "docTypes": "Invoices · Receipts · POs · Bank statements (image files)",
+    "scanning": "Scanning document… {pct}%",
+    "extracted": "Extracted Data",
+    "confidence": "Confidence",
+    "flagsTitle": "Inconsistencies flagged",
+    "noFlags": "No inconsistencies detected.",
+    "post": "Validate & post to ledger",
+    "posting": "Posting…",
+    "posted": "Posted to ledger (entry #{id}).",
+    "error": "Something went wrong. Is the API running?",
+    "fields": {
+      "vendor": "Vendor",
+      "invoice_number": "Invoice #",
+      "date": "Date",
+      "vat_number": "VAT Number",
+      "subtotal": "Subtotal",
+      "vat_amount": "VAT (15%)",
+      "total": "Total"
+    }
   }
 }

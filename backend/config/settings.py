@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "core",
     "organizations",
     "ledger",
+    "documents",
 ]
 
 MIDDLEWARE = [
