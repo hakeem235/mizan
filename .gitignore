@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Build output
+.next/
+out/
+build/
+db.sqlite3
+staticfiles/
+
+# OS / IDE
+.DS_Store
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
