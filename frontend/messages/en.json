@@ -1,0 +1,12 @@
+{
+  "brand": {
+    "name": "Mizan",
+    "tagline": "AI Accounting"
+  },
+  "landing": {
+    "headline": "Your virtual accountant",
+    "subhead": "AI-powered bookkeeping, document processing, financial reporting, and Saudi VAT — in Arabic and English.",
+    "cta": "Get started",
+    "healthLabel": "API status"
+  }
+}
