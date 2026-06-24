@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "organizations",
     "ledger",
     "documents",
+    "assistant",
 ]
 
 MIDDLEWARE = [
@@ -156,7 +157,10 @@ REST_FRAMEWORK = {
 }
 
 # --- Provisioned in later issues (declared now so imports/config never crash) ---
-# Anthropic Claude — financial assistant + insights (Issue 7.3).
+# Anthropic Claude — financial assistant + insights (Issue 7.3). The assistant
+# computes all figures deterministically from the ledger and uses Claude only to
+# phrase answers; with no key set it falls back to templated grounded answers.
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-opus-4-8")
 # OCR provider — chosen via Question before Issue 7.2.
 OCR_PROVIDER = os.environ.get("OCR_PROVIDER", "")
