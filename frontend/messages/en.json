@@ -53,5 +53,21 @@
       "vat_amount": "VAT (15%)",
       "total": "Total"
     }
+  },
+  "assistant": {
+    "title": "AI Financial Assistant",
+    "subtitle": "Grounded in your live ledger",
+    "placeholder": "Ask about your finances…",
+    "send": "Ask",
+    "thinking": "Thinking…",
+    "error": "Something went wrong. Is the API running?",
+    "citationsTitle": "Based on",
+    "intro": "Hi 👋 Ask me about your books — expenses, unpaid invoices, cash flow, or revenue.",
+    "suggestions": {
+      "expenses": "What were my highest expenses last month?",
+      "invoices": "Which invoices are unpaid older than 60 days?",
+      "cashflow": "Forecast my cash flow for next quarter",
+      "revenue": "Why did my revenue change?"
+    }
   }
 }

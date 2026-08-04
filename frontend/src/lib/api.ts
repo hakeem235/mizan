@@ -103,3 +103,20 @@ export function confirmDocument(
     body,
   );
 }
+
+export interface Citation {
+  label: string;
+  value: string;
+}
+
+export interface AssistantAnswer {
+  intent: string | null;
+  answer: string;
+  grounded: boolean;
+  citations: Citation[];
+  disclaimer: string;
+}
+
+export function askAssistant(question: string) {
+  return apiPost<AssistantAnswer>("/api/assistant/ask/", { question });
+}
